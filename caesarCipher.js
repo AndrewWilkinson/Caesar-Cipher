@@ -16,6 +16,8 @@ function caesarCipher(text, key) {
     {
         let characterCode = text.charCodeAt(i);
 
+        //ASCII Hardcoded solution // swap numbers for variables if desired
+
         //lowercase range
         if (characterCode > 96 && 123 > characterCode)
         {
@@ -67,14 +69,16 @@ function caesarCipher(text, key) {
         newText += String.fromCharCode(characterCode);
     }
 
-    //newText = text; //TEMP
-
     return newText;
 
 }
 
 function rollingCaesarCipher(text, minRoll, maxRoll) {
-    if (!text instanceof string) {
+
+    if (text === "")
+    return "";
+
+    if (!text instanceof String) {
         return;
     }
     let newText = "";
@@ -82,13 +86,31 @@ function rollingCaesarCipher(text, minRoll, maxRoll) {
     for (var i = 0, roll = 0; i < text.length; i++, roll++) 
     {
         newText += caesarCipher(text[i], minRoll+roll);
-        if (roll == maxRoll) {roll = 0};
+        if (roll > maxRoll) {roll = 0};
     }
 
+    return newText;
+}
+
+function DecodeRollingCaesarCipher(text, minRoll, maxRoll) {
+
+    if (text === "")
+    return "";
+    
+    if (!text instanceof String) {
+        return;
+    }
+    let newText = "";
+
+    for (var i = 0, roll = 0; i < text.length; i++, roll--) 
+    {
+        newText += caesarCipher(text[i], minRoll+roll);
+        if (roll < maxRoll) {roll = 0};
+    }
+
+    return newText;
 }
 
 //TODO something clever about numbers
 
-export {
-    caesarCipher // , rollingCaesarCipher
-}
+// export { caesarCipher,  rollingCaesarCipher }
