@@ -1,7 +1,7 @@
 function caesarCipher(text, key) {
 
     if (text === "")
-    return "";
+    {return "";}
 
     if (!text instanceof String) {
         return;
@@ -73,17 +73,17 @@ function caesarCipher(text, key) {
 
 }
 
-function rollingCaesarCipher(text, minRoll, maxRoll) {
+function rollingCaesarCipher(text, minRoll, maxRoll, rollChange) {
 
     if (text === "")
-    return "";
+    {return "";}
 
     if (!text instanceof String) {
         return;
     }
     let newText = "";
 
-    for (var i = 0, roll = 0; i < text.length; i++, roll++) 
+    for (var i = 0, roll = 0; i < text.length; i++, roll+=rollChange) 
     {
         newText += caesarCipher(text[i], minRoll+roll);
         if (roll > maxRoll) {roll = 0};
@@ -92,17 +92,18 @@ function rollingCaesarCipher(text, minRoll, maxRoll) {
     return newText;
 }
 
-function DecodeRollingCaesarCipher(text, minRoll, maxRoll) {
+//Should take negative values matching the values used when encoding
+function DecodeRollingCaesarCipher(text, minRoll, maxRoll, rollChange) {
 
     if (text === "")
-    return "";
+    {return "";}
     
     if (!text instanceof String) {
         return;
     }
     let newText = "";
 
-    for (var i = 0, roll = 0; i < text.length; i++, roll--) 
+    for (var i = 0, roll = 0; i < text.length; i++, roll-=rollChange) 
     {
         newText += caesarCipher(text[i], minRoll+roll);
         if (roll < maxRoll) {roll = 0};

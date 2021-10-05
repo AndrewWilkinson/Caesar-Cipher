@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caesar Cipher</title>
 
+    <script src="index.js"></script>
     <script src="caesarCipher.js"></script>
 
+
 </head>
+
 <body>
-<textarea name="Decoded" id="" cols="30" rows="10"></textarea>
-<div>
-    <input type="number" name="" id="" value=""></input>
-    <button type="button" value="">Encode</button> 
-    <button type="button" value="">Decode</button>
-</div>
-<textarea name="Encoded" id="" cols="30" rows="10"></textarea>
+
+    <h3>Caesar Cipher and Rolling Cipher</h3>
+
+    <textarea name="Decoded" id="decoded" cols="50" rows="10">Decoded</textarea>
+    <div>
+        <label for="shift">Cipher shift amount: </label>
+        <input type="number" name="shift" id="shift" value="1" style="width: 40px;"></input>
+        <button onclick="simpleEncrypt(Number(shift.value))">Encrypt</button>
+        <button onclick="simpleDecrypt(Number(shift.value))">Decrypt</button>
+    </div>
+    <div>
+        <label for="roll_shift_offset">Rolling offset max:</label>
+        <input type="number" name="roll_shift_offset" id="roll_shift_offset" value="1" min="1"
+            style="width: 40px;"></input>
+        <button type="button"
+            onclick="useRollingEncrypt(Number(shift.value),(Number(shift.value)+Number(roll_shift_offset.value)),Number(roll_increment.value))">Encrypt
+            with Rolling</button>
+        <button type="button"
+            onclick="useRollingDecrypt(Number(shift.value),(Number(shift.value)+Number(roll_shift_offset.value)),Number(roll_increment.value))">Decrypt
+            with Rolling</button>
+            <label for="roll_increment">Roll Increments Size:</label>
+            <input type="number" name="roll_increment" id="roll_increment" value="1"
+                style="width: 40px;"></input>
+    </div>
+    <textarea name="Encoded" id="encoded" cols="50" rows="10">Encoded</textarea>
 </body>
+
 </html>
